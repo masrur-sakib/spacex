@@ -1,9 +1,23 @@
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
+import Homepage from "./components/Homepage/Homepage";
+import NotFound from "./components/NotFound/NotFound";
 
 function App() {
   return (
     <div>
-      <h3>SpaceX</h3>
+      <Router>
+        {/* Header */}
+        <Switch>
+          <Route exact path="/">
+            <Homepage />
+          </Route>
+          <Route path="*">
+            <NotFound />
+          </Route>
+        </Switch>
+        {/* Footer */}
+      </Router>
     </div>
   );
 }
