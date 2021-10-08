@@ -1,3 +1,4 @@
+/* Golbal Styles */
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -20,4 +21,10 @@ h5,
 h6,
 p {
   margin: 0;
+}
+
+/* NotFound Page Styles */
+.notfound-page {
+  min-height: 80vh;
+  min-width: 80vw;
 }
