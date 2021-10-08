@@ -1,9 +1,10 @@
 import React from "react";
+import Missions from "../Missions/Missions";
 
 const Homepage = () => {
   return (
-    <div className="container">
-      <h3>Homepage</h3>
+    <div>
+      <Missions />
     </div>
   );
 };
