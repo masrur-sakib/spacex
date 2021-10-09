@@ -28,9 +28,24 @@ p {
 }
 
 /* Mission Section Styles */
-.missions-section {
-  padding: 50px 0px;
-  min-height: calc(100vh - 60px);
+.hero-section {
+  height: 60vh;
+  width: 100%;
+  padding: 16px;
+  background-color: #000000;
+  color: #ffffff;
+  background-image: linear-gradient(#00000031, rgba(0, 0, 0, 0.7)),
+    url("./assets/images/hero-section-image1.jpg");
+  background-position: center;
+  background-size: inherit;
+  background-repeat: no-repeat;
+  text-align: center;
+}
+.missions-filters-section {
+  padding: 10px;
+  height: 100px;
+  position: relative;
+  bottom: 50px;
 }
 .mission-detail-name {
   display: inline-block;

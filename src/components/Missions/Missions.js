@@ -1,63 +1,23 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getMissionsData } from "../../redux/missionsSlice";
-import { setSearchTerm } from "../../redux/searchSlice";
+import FiltersSection from "../FiltersSection/FiltersSection";
+import HeroSection from "../HeroSection/HeroSection";
 
 const Missions = () => {
-  const searchRef = useRef(null);
   const dispatch = useDispatch();
   const { missions } = useSelector((state) => state.missions);
   const { searchTerm } = useSelector((state) => state.search);
-
-  // Search Function
-  const searchHandler = (e) => {
-    e.preventDefault();
-    dispatch(setSearchTerm(e.target.searchTerm.value));
-    searchRef.current.value = "";
-  };
 
   useEffect(() => {
     // API data fetching function
     dispatch(getMissionsData());
   }, [dispatch]);
   return (
-    <div className="container missions-section">
-      <div className="py-2 d-flex flex-wrap justify-content-center align-items-center border-bottom border-secondary missions-title-section">
-        <h3 className="m-2">Missions:</h3>
-        <form
-          className="mx-4 my-2 d-flex justify-content-center align-items-center flex-grow-1"
-          onSubmit={searchHandler}
-        >
-          <input
-            ref={searchRef}
-            className="form-control bg-light border border-1 border-secondary shadow-none rounded-0"
-            type="search"
-            name="searchTerm"
-            placeholder="Search by Rocket Name like falcon-1, falcon 9, falcon heavy"
-            aria-label="Search"
-          />
-          <button
-            className="btn btn-secondary shadow-none rounded-0"
-            type="submit"
-          >
-            <span>
-              <i className="bi bi-search"></i>
-            </span>
-          </button>
-        </form>
-        <div className="m-2 d-flex justify-content-end align-items-center">
-          <div className="m-1 px-2 border border-secondary">
-            Launch Year: Dropdown
-          </div>
-          <div className="mx-1 px-2 border border-secondary">
-            Launch Status: Dropdown
-          </div>
-          <div className="mx-1 px-2 border border-secondary">
-            Checkbox: Upcoming
-          </div>
-        </div>
-      </div>
-      <div className="p-4 missions-cards-section">
+    <>
+      <HeroSection />
+      <FiltersSection />
+      <div className="container p-4 missions-cards-section">
         <div className="row">
           {missions.length > 0
             ? missions
@@ -73,6 +33,8 @@ const Missions = () => {
                   }
                   return null;
                 })
+                .slice(0)
+                .reverse()
                 .map((mission) => (
                   <div key={mission.mission_name} className="col-lg-4 col-md-6">
                     <div className="m-2 p-4 border shadow-sm">
@@ -144,7 +106,7 @@ const Missions = () => {
             : null}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

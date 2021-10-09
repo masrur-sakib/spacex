@@ -1,5 +1,7 @@
 ## SpaceX Project:
 
+This application provides all the important data of SpaceX missions. Anyone also can quickly find details of any specific mission by using the search feature.
+
 ### Installation Steps:
 
 Open terminal in your IDE/Code Editor and run the below commands ony by one,
