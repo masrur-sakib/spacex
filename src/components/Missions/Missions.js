@@ -33,22 +33,14 @@ const Missions = () => {
                   }
                   return null;
                 })
-                .slice(0)
-                .reverse()
                 .map((mission) => (
                   <div key={mission.mission_name} className="col-lg-4 col-md-6">
                     <div className="m-2 p-4 border shadow-sm">
                       <h5 className="mb-4">
                         <span className="text-secondary">Mission:</span>{" "}
-                        <span
-                          className={
-                            mission.launch_success
-                              ? "text-success fw-bolder"
-                              : "text-danger fw-bolder"
-                          }
-                        >
-                          {mission.mission_name.slice(0, 10)}{" "}
-                          {mission.mission_name.length > 10 ? ". ." : ""}
+                        <span className="fw-bolder">
+                          {mission.mission_name.slice(0, 13)}{" "}
+                          {mission.mission_name.length > 13 ? ".." : ""}
                         </span>
                       </h5>
                       <div className="mb-4 text-secondary">
@@ -85,21 +77,38 @@ const Missions = () => {
                             className={
                               mission.launch_success
                                 ? "text-success fw-bolder"
+                                : mission.launch_success === null
+                                ? "text-secondary fw-bolder"
                                 : "text-danger fw-bolder"
                             }
                           >
-                            {mission.launch_success ? "Success" : "Failed"}{" "}
+                            {mission.launch_success
+                              ? "Success"
+                              : mission.launch_success === null
+                              ? "N/A"
+                              : "Failed"}{" "}
                           </span>
                         </p>
                       </div>
-                      <a
-                        className="btn btn-secondary btn-sm"
-                        href={mission.links.video_link}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        Video Link
-                      </a>
+                      {mission.links.video_link !== null ? (
+                        <a
+                          className={
+                            mission.links.video_link !== null &&
+                            mission.launch_success
+                              ? "btn btn-light border border-success rounded shadow-sm btn-sm"
+                              : mission.links.video_link !== null
+                              ? "btn btn-light border border-danger rounded shadow-sm btn-sm"
+                              : "invisible"
+                          }
+                          href={mission.links.video_link}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          Video Link
+                        </a>
+                      ) : (
+                        <p>*video not available</p>
+                      )}
                     </div>
                   </div>
                 ))
