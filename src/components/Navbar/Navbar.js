@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-expand-lg sticky-top navbar-light bg-light shadow-sm">
+    <nav className="navbar navbar-expand-lg sticky-top navbar-light bg-white shadow-sm">
       <div className="container">
-        <Link className="navbar-brand" to="./">
+        <Link className="fs-3 fw-bold navbar-brand" to="./">
           SpaceX
         </Link>
         <button
@@ -18,12 +18,12 @@ const Navbar = () => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+        {/* <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <form className="d-flex justify-content-center align-items-center flex-grow-1">
             <input
-              className="form-control w-50 bg-white border-0 shadow-none rounded-0"
+              className="form-control w-50 bg-light border border-1 border-secondary shadow-none rounded-0"
               type="search"
-              placeholder="Search Rocket"
+              placeholder="Search by Rocket Name"
               aria-label="Search"
             />
             <button
@@ -35,7 +35,7 @@ const Navbar = () => {
               </span>
             </button>
           </form>
-        </div>
+        </div> */}
       </div>
     </nav>
   );
