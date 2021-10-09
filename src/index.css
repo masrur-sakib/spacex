@@ -32,6 +32,10 @@ p {
   padding: 50px 0px;
   min-height: calc(100vh - 60px);
 }
+.mission-detail-name {
+  display: inline-block;
+  width: 110px;
+}
 
 /* NotFound Page Styles */
 .notfound-page {
