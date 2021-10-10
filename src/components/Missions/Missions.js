@@ -17,7 +17,7 @@ const Missions = () => {
 
   return (
     <>
-      <div className="container p-4 missions-cards-section">
+      <div className="container pt-2 pb-5 missions-cards-section">
         <div className="row">
           {missions.length > 0
             ? missions
@@ -36,9 +36,9 @@ const Missions = () => {
                 })
                 // Year Filter
                 .filter((mission) => {
-                  if (filterYear === "") {
+                  if (filterYear === "" || filterYear === "Year") {
                     return mission;
-                  } else if (mission.launch_year === filterYear) {
+                  } else if (filterYear === mission.launch_year) {
                     return mission;
                   }
                   return null;
@@ -47,14 +47,14 @@ const Missions = () => {
                 .filter((mission) => {
                   if (filterStatus === "") {
                     return mission;
-                  } else if (mission.launch_success === filterStatus) {
+                  } else if (filterStatus === mission.launch_success) {
                     return mission;
                   }
                   return null;
                 })
                 // Upcoming Filter
                 .filter((mission) => {
-                  if (mission.upcoming === filterUpcoming) {
+                  if (filterUpcoming === mission.upcoming) {
                     return mission;
                   }
                   return null;
