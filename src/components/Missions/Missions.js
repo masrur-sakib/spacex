@@ -1,26 +1,27 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getMissionsData } from "../../redux/missionsSlice";
-import FiltersSection from "../FiltersSection/FiltersSection";
-import HeroSection from "../HeroSection/HeroSection";
 
 const Missions = () => {
   const dispatch = useDispatch();
   const { missions } = useSelector((state) => state.missions);
   const { searchTerm } = useSelector((state) => state.search);
+  const { filterYear, filterStatus, filterUpcoming } = useSelector(
+    (state) => state.filters
+  );
 
   useEffect(() => {
     // API data fetching function
     dispatch(getMissionsData());
   }, [dispatch]);
+
   return (
     <>
-      <HeroSection />
-      <FiltersSection />
       <div className="container p-4 missions-cards-section">
         <div className="row">
           {missions.length > 0
             ? missions
+                // Search Filter
                 .filter((mission) => {
                   if (searchTerm === "") {
                     return mission;
@@ -29,6 +30,31 @@ const Missions = () => {
                       .toLowerCase()
                       .includes(searchTerm.toLowerCase())
                   ) {
+                    return mission;
+                  }
+                  return null;
+                })
+                // Year Filter
+                .filter((mission) => {
+                  if (filterYear === "") {
+                    return mission;
+                  } else if (mission.launch_year === filterYear) {
+                    return mission;
+                  }
+                  return null;
+                })
+                // Status Filter
+                .filter((mission) => {
+                  if (filterStatus === "") {
+                    return mission;
+                  } else if (mission.launch_success === filterStatus) {
+                    return mission;
+                  }
+                  return null;
+                })
+                // Upcoming Filter
+                .filter((mission) => {
+                  if (mission.upcoming === filterUpcoming) {
                     return mission;
                   }
                   return null;
@@ -96,9 +122,9 @@ const Missions = () => {
                             mission.links.video_link !== null &&
                             mission.launch_success
                               ? "btn btn-light border border-success rounded shadow-sm btn-sm"
-                              : mission.links.video_link !== null
+                              : mission.launch_success === false
                               ? "btn btn-light border border-danger rounded shadow-sm btn-sm"
-                              : "invisible"
+                              : "btn btn-light border border-secondary rounded shadow-sm btn-sm"
                           }
                           href={mission.links.video_link}
                           target="_blank"

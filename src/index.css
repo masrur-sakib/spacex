@@ -27,7 +27,7 @@ p {
   margin: 0 !important;
 }
 
-/* Mission Section Styles */
+/* Hero Section Styles */
 .hero-section {
   height: 60vh;
   width: 100%;
@@ -41,12 +41,18 @@ p {
   background-repeat: no-repeat;
   text-align: center;
 }
+
+/* Filters Section Styles */
 .missions-filters-section {
-  padding: 10px;
-  height: 100px;
+  min-height: 150px;
   position: relative;
-  bottom: 50px;
+  bottom: 75px;
 }
+.filter-name {
+  width: 130px;
+}
+
+/* Mission Card Section Styles */
 .missions-cards-section {
   min-height: 50vh;
 }

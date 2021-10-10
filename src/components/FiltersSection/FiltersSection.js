@@ -1,12 +1,39 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  setFilterStatus,
+  setFilterUpcoming,
+  setFilterYear,
+} from "../../redux/filtersSlice";
 
 const FiltersSection = () => {
+  const dispatch = useDispatch();
+  const { filterYear, filterStatus, filterUpcoming } = useSelector(
+    (state) => state.filters
+  );
+
+  // Function to convert dropdown string value to boolean
+  const filterStatusHandler = (e) => {
+    if (e.target.value === "true") {
+      dispatch(setFilterStatus(true));
+    } else if (e.target.value === "false") {
+      dispatch(setFilterStatus(false));
+    } else {
+      dispatch(setFilterStatus(""));
+    }
+  };
+
   return (
-    <div className="container d-flex justify-content-around align-items-center bg-white shadow-sm missions-filters-section">
-      <div className="d-flex justify-content-between align-items-center">
-        <p className="m-2">Year: </p>
-        <select class="form-select" aria-label="Default select example">
-          <option selected>Select Year</option>
+    <div className="container px-5 py-3 d-flex justify-content-between align-items-center flex-wrap bg-white shadow-sm rounded missions-filters-section">
+      <div className="my-2 d-flex justify-content-between align-items-center">
+        <p className="m-2 filter-name">Filter by: </p>
+        <select
+          className="form-select"
+          aria-label="Default select example"
+          value={filterYear}
+          onChange={(e) => dispatch(setFilterYear(e.target.value))}
+        >
+          <option value="">Year</option>
           <option value="2006">2006</option>
           <option value="2007">2007</option>
           <option value="2008">2008</option>
@@ -24,24 +51,29 @@ const FiltersSection = () => {
           <option value="2020">2020</option>
         </select>
       </div>
-      <div className="d-flex justify-content-between align-items-center">
-        <p className="m-2">Status: </p>
-        <select class="form-select" aria-label="Default select example">
-          <option selected>Select Status</option>
-          <option value="success">Successful</option>
-          <option value="failed">Failed</option>
-          <option value="n/a">N/A</option>
+      <div className="my-2 d-flex justify-content-between align-items-center">
+        <p className="m-2 filter-name">Filter by: </p>
+        <select
+          className="form-select"
+          aria-label="Default select example"
+          value={filterStatus}
+          onChange={filterStatusHandler}
+        >
+          <option value="">Status</option>
+          <option value="true">Success</option>
+          <option value="false">Failed</option>
         </select>
       </div>
-      <div className="d-flex justify-content-between align-items-center">
-        <div class="form-check">
+      <div className="my-2 d-flex justify-content-between align-items-center">
+        <div className="form-check">
           <input
-            class="form-check-input"
+            className="form-check-input"
             type="checkbox"
-            value=""
             id="flexCheckDefault"
+            value={filterUpcoming}
+            onChange={() => dispatch(setFilterUpcoming(!filterUpcoming))}
           />
-          <label class="form-check-label" for="flexCheckDefault">
+          <label className="form-check-label" htmlFor="flexCheckDefault">
             Upcoming
           </label>
         </div>
