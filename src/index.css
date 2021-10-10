@@ -54,7 +54,7 @@ p {
 
 /* Mission Card Section Styles */
 .missions-cards-section {
-  min-height: 50vh;
+  min-height: 40vh;
 }
 .mission-detail-name {
   display: inline-block;
